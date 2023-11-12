@@ -21,11 +21,14 @@ stdenv.mkDerivation (finalAttrs: {
     sha256 = "${finalAttrs.sha256}";
   };
 
-  nativeBuildInputs = [
-    autoPatchelfHook
-    xz
-    zlib
-  ];
+  # 7.2 and above needs to have zlib
+  nativeBuildInputs =
+    let
+      majorVersion = lib.take 1 (lib.splitVersion finalAttrs.version);
+      minorVersion = lib.take 2 (lib.splitVersion finalAttrs.version);
+      shouldIncludeZLib = if (majorVersion == 7 && minorVersion >= 2) then true else false;
+    in
+    [ autoPatchelfHook ] ++ (if shouldIncludeZLib then [ xz zlib ] else [ ]);
 
   unpackPhase = ":";
 
