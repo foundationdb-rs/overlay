@@ -12,7 +12,11 @@
     in
     {
       overlays.default = final: prev: {
-        libfdb = final.callPackage ./pkgs/libfdb { };
+        # avoid breaking current users
+        libfdb = final.callPackage ./pkgs/libfdb/libfdb_71.nix { };
+        libfdb71 = final.callPackage ./pkgs/libfdb/libfdb_71.nix { };
+        libfdb72 = final.callPackage ./pkgs/libfdb/libfdb_72.nix { };
+        libfdb73 = final.callPackage ./pkgs/libfdb/libfdb_73.nix { };
       };
     };
 }
