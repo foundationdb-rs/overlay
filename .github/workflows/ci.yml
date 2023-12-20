@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        example: ["simple-71", "simple-72", "simple-73", "override"]
+        example: ["simple", "simple-71", "simple-72", "simple-73", "override"]
     steps:
       - uses: actions/checkout@v3
       - uses: cachix/install-nix-action@v22

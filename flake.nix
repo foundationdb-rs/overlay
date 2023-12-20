@@ -12,7 +12,7 @@
     in
     {
       overlays.default = final: prev: {
-        # avoid breaking current users
+        # Keep default to 7.1 to avoid breaking current user
         libfdb = final.callPackage ./pkgs/libfdb/libfdb_71.nix { };
         libfdb71 = final.callPackage ./pkgs/libfdb/libfdb_71.nix { };
         libfdb72 = final.callPackage ./pkgs/libfdb/libfdb_72.nix { };
