@@ -16,8 +16,8 @@
       in
       {
         devShells.default = pkgs.mkShell {
-          nativeBuildInputs = with pkgs; [ libfdb ];
-          FDB_LIB_PATH = "${pkgs.libfdb}/include";
+          nativeBuildInputs = with pkgs; [ libfdb73 ];
+          FDB_LIB_PATH = "${pkgs.libfdb73}/include";
         };
       }
     );
