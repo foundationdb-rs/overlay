@@ -57,6 +57,9 @@
           check-simple-73 = checkLib pkgs.libfdb73 "check-simple-73";
           check-simple-74 = checkLib pkgs.libfdb74 "check-simple-74";
           check-override = checkLib libfdb7149_override "check-override"; # Checks the overridden 7.1.49
+
+          # VM Tests
+          simple-vm-test = pkgs.callPackage ./tests/simple.nix { };
         }
       );
     };
