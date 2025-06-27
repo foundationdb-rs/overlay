@@ -1,12 +1,4 @@
-{
-  stdenv
-, autoPatchelfHook
-, fetchurl
-, makeWrapper
-, lib # For optional meta
-, xz # Added for liblzma
-, zlib # Added for libz
-}:
+{ stdenv, autoPatchelfHook, fetchurl, makeWrapper, lib, xz, zlib }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "fdbserver";

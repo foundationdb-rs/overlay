@@ -1,10 +1,4 @@
-{ stdenv
-, autoPatchelfHook
-, fetchurl
-, lib
-, xz
-, zlib
-}:
+{ stdenv, autoPatchelfHook, fetchurl, lib }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "fdbcli";
@@ -15,7 +9,7 @@ stdenv.mkDerivation (finalAttrs: {
     sha256 = "2fd11165c08fb89d5ac62349fa8b94529aaf7f6be5ade606cd5394a64a781763";
   };
 
-  nativeBuildInputs = [ autoPatchelfHook xz zlib ];
+  nativeBuildInputs = [ autoPatchelfHook ];
 
   unpackPhase = ":";
 

@@ -1,8 +1,4 @@
-{ stdenv
-, autoPatchelfHook
-, fetchurl
-, lib
-}:
+{ stdenv, autoPatchelfHook, fetchurl, lib }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "libfdb_c";

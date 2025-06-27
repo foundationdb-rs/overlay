@@ -1,10 +1,4 @@
-{ stdenv
-, autoPatchelfHook
-, fetchurl
-, lib
-, xz
-, zlib
-}:
+{ stdenv, autoPatchelfHook, fetchurl, lib, xz, zlib }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "fdbcli";
