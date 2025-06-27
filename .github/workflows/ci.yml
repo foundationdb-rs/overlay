@@ -11,4 +11,4 @@ jobs:
       - uses: actions/checkout@v4
       - uses: cachix/install-nix-action@v27
       - name: Run Flake Checks
-        run: nix flake check .
+        run: nix -vL flake check --print-build-logs
