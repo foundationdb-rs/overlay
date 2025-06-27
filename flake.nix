@@ -18,9 +18,11 @@
         libfdb71 = final.callPackage ./pkgs/libfdb/libfdb_71.nix { };
         libfdb72 = final.callPackage ./pkgs/libfdb/libfdb_72.nix { };
         libfdb73 = final.callPackage ./pkgs/libfdb/libfdb_73.nix { };
+        libfdb74 = final.callPackage ./pkgs/libfdb/libfdb_74.nix { };
 
         # Add fdbserver
         fdbserver73 = final.callPackage ./pkgs/fdbserver/fdbserver_73.nix { };
+        fdbserver74 = final.callPackage ./pkgs/fdbserver/fdbserver_74.nix { };
       };
 
       # Add checks
@@ -40,8 +42,12 @@
             });
         in {
           # Original fdbserver check
-          fdbserver-help = pkgs.runCommand "fdbserver-help-check" { buildInputs = [ pkgs.fdbserver73 ]; } ''
+          fdbserver-help-73 = pkgs.runCommand "fdbserver-help-check-73" { buildInputs = [ pkgs.fdbserver73 ]; } ''
             ${pkgs.fdbserver73}/bin/fdbserver --help > $out
+          '';
+
+          fdbserver-help-74 = pkgs.runCommand "fdbserver-help-check-74" { buildInputs = [ pkgs.fdbserver74 ]; } ''
+            ${pkgs.fdbserver74}/bin/fdbserver --help > $out
           '';
 
           # Example Checks
@@ -49,6 +55,7 @@
           check-simple-71 = checkLib pkgs.libfdb71 "check-simple-71";
           check-simple-72 = checkLib pkgs.libfdb72 "check-simple-72";
           check-simple-73 = checkLib pkgs.libfdb73 "check-simple-73";
+          check-simple-74 = checkLib pkgs.libfdb74 "check-simple-74";
           check-override = checkLib libfdb7149_override "check-override"; # Checks the overridden 7.1.49
         }
       );
