@@ -23,6 +23,8 @@
         # Add fdbserver
         fdbserver73 = final.callPackage ./pkgs/fdbserver/fdbserver_73.nix { };
         fdbserver74 = final.callPackage ./pkgs/fdbserver/fdbserver_74.nix { };
+
+        fdbcli74 = final.callPackage ./pkgs/fdbcli/fdbcli_74.nix { };
       };
 
       # Add checks

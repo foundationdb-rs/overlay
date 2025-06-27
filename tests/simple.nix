@@ -4,7 +4,7 @@ pkgs.nixosTest {
   name = "simple-fdbserver-test";
   nodes.machine = { ... }:
     {
-      environment.systemPackages = [ pkgs.fdbserver74 ];
+      environment.systemPackages = [ pkgs.fdbserver74 pkgs.fdbcli74 ];
 
       # Create fdb user and group
       users.users.fdb = {
@@ -37,5 +37,8 @@ pkgs.nixosTest {
 
     # Wait for the server to start listening on its port
     machine.wait_for_open_port(4500)
+
+    # Check the status using fdbcli
+    machine.succeed("fdbcli --exec 'status' --timeout 10")
   '';
 }
