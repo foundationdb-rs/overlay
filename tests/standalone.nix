@@ -41,5 +41,7 @@ pkgs.nixosTest {
     # Check the status using fdbcli
     machine.succeed("fdbcli --exec 'configure new single memory' --timeout 10")
     machine.succeed("fdbcli --exec 'status' --timeout 10")
+    machine.succeed("fdbcli --exec 'writemode on; set hello world' --timeout 2")
+    machine.succeed("fdbcli --exec 'get hello' --timeout 2 | grep 'world'")
   '';
 }

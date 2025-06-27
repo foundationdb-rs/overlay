@@ -61,5 +61,7 @@ pkgs.nixosTest {
     node1.log(output)
 
     node1.succeed("fdbcli --exec 'status' --timeout 2 | grep 'FoundationDB processes - 2'")
+    node1.succeed("fdbcli --exec 'writemode on; set hello world' --timeout 2")
+    node1.succeed("fdbcli --exec 'get hello' --timeout 2 | grep 'world'")
   '';
 }
