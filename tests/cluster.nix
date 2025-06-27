@@ -2,38 +2,30 @@
 
 pkgs.nixosTest {
   name = "fdb-cluster-test";
-  nodes = {
-    node1 = { ... }:
-      {
-        networking.firewall.enable = false;
-        networking.interfaces.eth1.ipv4.addresses = [ { address = "192.168.1.1"; prefixLength = 24; } ];
-        environment.systemPackages = [ pkgs.fdbserver74 pkgs.fdbcli74 pkgs.toybox ];
-        users.users.fdb = {
-          isSystemUser = true;
-          group = "fdb";
-        };
-        users.groups.fdb = {};
-        environment.etc."foundationdb/fdb.cluster".text = "docker:docker@192.168.1.1:4500";
-        systemd.tmpfiles.rules = [
-          "d /var/lib/foundationdb 0755 fdb fdb -"
-          "d /var/lib/foundationdb/data 0755 fdb fdb -"
-        ];
+  nodes = let
+    common = {
+      networking.firewall.enable = false;
+      environment.systemPackages = [ pkgs.fdbserver74 pkgs.fdbcli74 pkgs.toybox ];
+      users.users.fdb = {
+        isSystemUser = true;
+        group = "fdb";
       };
-    node2 = { ... }:
+      users.groups.fdb = {};
+      environment.etc."foundationdb/fdb.cluster".text = "docker:docker@192.168.1.1:4500";
+      systemd.tmpfiles.rules = [
+        "d /var/lib/foundationdb 0755 fdb fdb -"
+        "d /var/lib/foundationdb/data 0755 fdb fdb -"
+      ];
+    };
+  in
+  {
+    node1 = pkgs.lib.recursiveUpdate common
       {
-        networking.firewall.enable = false;
+        networking.interfaces.eth1.ipv4.addresses = [ { address = "192.168.1.1"; prefixLength = 24; } ];
+      };
+    node2 = pkgs.lib.recursiveUpdate common
+      {
         networking.interfaces.eth1.ipv4.addresses = [ { address = "192.168.1.2"; prefixLength = 24; } ];
-        environment.systemPackages = [ pkgs.fdbserver74 pkgs.fdbcli74 pkgs.toybox ];
-        users.users.fdb = {
-          isSystemUser = true;
-          group = "fdb";
-        };
-        users.groups.fdb = {};
-        environment.etc."foundationdb/fdb.cluster".text = "docker:docker@192.168.1.1:4500";
-        systemd.tmpfiles.rules = [
-          "d /var/lib/foundationdb 0755 fdb fdb -"
-          "d /var/lib/foundationdb/data 0755 fdb fdb -"
-        ];
       };
   };
 
