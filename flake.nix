@@ -24,6 +24,8 @@
         fdbserver73 = final.callPackage ./pkgs/fdbserver/fdbserver_73.nix { };
         fdbserver74 = final.callPackage ./pkgs/fdbserver/fdbserver_74.nix { };
 
+        fdbcli71 = final.callPackage ./pkgs/fdbcli/fdbcli_73.nix { };
+        fdbcli73 = final.callPackage ./pkgs/fdbcli/fdbcli_73.nix { };
         fdbcli74 = final.callPackage ./pkgs/fdbcli/fdbcli_74.nix { };
       };
 
@@ -61,7 +63,7 @@
           check-override = checkLib libfdb7149_override "check-override"; # Checks the overridden 7.1.49
 
           # VM Tests
-          simple-vm-test = pkgs.callPackage ./tests/simple.nix { };
+          cluster-vm-test = pkgs.callPackage ./tests/cluster.nix { };
         }
       );
     };

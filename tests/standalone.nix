@@ -39,6 +39,7 @@ pkgs.nixosTest {
     machine.wait_for_open_port(4500)
 
     # Check the status using fdbcli
+    machine.succeed("fdbcli --exec 'configure new single memory' --timeout 10")
     machine.succeed("fdbcli --exec 'status' --timeout 10")
   '';
 }
