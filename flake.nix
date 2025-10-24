@@ -21,6 +21,7 @@
         libfdb74 = final.callPackage ./pkgs/libfdb/libfdb_74.nix { };
 
         # Add fdbserver
+        fdbserver71 = final.callPackage ./pkgs/fdbserver/fdbserver_71.nix { };
         fdbserver73 = final.callPackage ./pkgs/fdbserver/fdbserver_73.nix { };
         fdbserver74 = final.callPackage ./pkgs/fdbserver/fdbserver_74.nix { };
 
@@ -48,6 +49,10 @@
         in
         {
           # Original fdbserver check
+          fdbserver-help-71 = pkgs.runCommand "fdbserver-help-check-71" { buildInputs = [ pkgs.fdbserver71 ]; } ''
+            ${pkgs.fdbserver71}/bin/fdbserver --help > $out
+          '';
+
           fdbserver-help-73 = pkgs.runCommand "fdbserver-help-check-73" { buildInputs = [ pkgs.fdbserver73 ]; } ''
             ${pkgs.fdbserver73}/bin/fdbserver --help > $out
           '';
