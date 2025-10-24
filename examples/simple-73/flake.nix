@@ -1,8 +1,8 @@
 {
   inputs = {
-    nixpkgs.url = github:nixos/nixpkgs/nixos-unstable;
-    flake-utils.url = github:numtide/flake-utils;
-    fdb-overlay.url = path:./../..;
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
+    fdb-overlay.url = "path:./../..";
   };
 
   outputs = { nixpkgs, flake-utils, fdb-overlay, ... }:
