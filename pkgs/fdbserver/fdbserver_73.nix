@@ -2,12 +2,11 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "fdbserver";
-  version = "7.3.63";
+  version = "7.3.69";
 
   src = fetchurl {
     url = "https://github.com/apple/foundationdb/releases/download/${finalAttrs.version}/fdbserver.x86_64";
-    # Hash obtained via nix-prefetch-url
-    sha256 = "0024nwjsascwwgfgn7ndmr0wb0p3kl21rc9mmkdhnvjpwi3vj42b";
+    sha256 = "490dd8de050b3883103ae7513deacde332c75e9a5f06e1897360d21f438b1e17";
   };
 
   nativeBuildInputs = [ autoPatchelfHook makeWrapper xz zlib ]; 

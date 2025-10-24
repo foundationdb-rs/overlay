@@ -2,8 +2,8 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "libfdb_c";
-  version = "7.1.19";
-  sha256 = "51b2bc6d3e60d22ed0e393ed814026d1e529acc6a3a644405788f2749f4dd54d";
+  version = "7.1.61";
+  sha256 = "f3cd884f6a4463305220eb2160f910e0dbcd5109dfc90acd427a37a1d09ca9cc";
 
   src = fetchurl {
     url = "https://github.com/apple/foundationdb/releases/download/${finalAttrs.version}/libfdb_c.x86_64.so";
