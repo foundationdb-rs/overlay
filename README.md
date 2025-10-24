@@ -21,24 +21,28 @@ To use this overlay, add it to your `flake.nix` inputs:
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
     fdb-overlay.url = "github:foundationdb-rs/overlay";
   };
 
-  outputs = { self, nixpkgs, flake-utils, fdb-overlay, ... }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = import nixpkgs {
-          inherit system;
-          overlays = [ fdb-overlay.overlays.default ];
-        };
-      in
-      {
-        devShells.default = pkgs.mkShell {
-          packages = [ pkgs.libfdb pkgs.fdbcli ];
-        };
-      }
-    );
+  outputs =
+    {
+      nixpkgs,
+      fdb-overlay,
+      ...
+    }:
+    let
+      system = "x86_64-linux";
+
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [ fdb-overlay.overlays.default ];
+      };
+    in
+    {
+      devShells."${system}".default = pkgs.mkShell {
+        packages = with pkgs; [ libfdb fdbcli ];
+      };
+    };
 }
 ```
 
