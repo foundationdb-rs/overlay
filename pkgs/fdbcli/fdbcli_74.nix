@@ -2,11 +2,11 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "fdbcli";
-  version = "7.4.3";
+  version = "7.4.5";
 
   src = fetchurl {
     url = "https://github.com/apple/foundationdb/releases/download/${finalAttrs.version}/fdbcli.x86_64";
-    sha256 = "c5ce9c68ac0b2bbb2f2273017a4e1ce90285e7d3ea62cedc00984deee83a9106";
+    sha256 = "bd267011f2795f0f00ab635f301bca3a3be86a61bbf4299ebef139a03e8da601";
   };
 
   nativeBuildInputs = [ autoPatchelfHook xz zlib ];
