@@ -9,7 +9,7 @@ This overlay provides the following packages:
 *   `libfdb`: The FoundationDB C client library.
     *   Versions: 7.1, 7.2, 7.3, 7.4
 *   `fdbserver`: The FoundationDB server.
-    *   Versions: 7.3, 7.4
+    *   Versions: 7.1, 7.3, 7.4
 *   `fdbcli`: The FoundationDB command-line interface.
     *   Versions: 7.1, 7.3, 7.4
 
