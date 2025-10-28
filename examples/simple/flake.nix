@@ -1,24 +1,27 @@
 {
   inputs = {
-    nixpkgs.url = github:nixos/nixpkgs/nixos-unstable;
-    flake-utils.url = github:numtide/flake-utils;
-    fdb-overlay.url = path:./../..;
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    fdb-overlay.url = "path:./../..";
   };
 
-  outputs = { nixpkgs, flake-utils, fdb-overlay, ... }:
-    flake-utils.lib.eachSystem [ "x86_64-linux" ] (
-      system:
-      let
-        pkgs = import nixpkgs {
-          inherit system;
-          overlays = [ fdb-overlay.overlays.default ];
-        };
-      in
-      {
-        devShells.default = pkgs.mkShell {
-          nativeBuildInputs = with pkgs; [ libfdb ];
-          FDB_LIB_PATH = "${pkgs.libfdb}/include";
-        };
-      }
-    );
+  outputs =
+    {
+      nixpkgs,
+      fdb-overlay,
+      ...
+    }:
+    let
+      system = "x86_64-linux";
+
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [ fdb-overlay.overlays.default ];
+      };
+    in
+    {
+      devShells."${system}".default = pkgs.mkShell {
+        nativeBuildInputs = with pkgs; [ libfdb ];
+        FDB_LIB_PATH = "${pkgs.libfdb}/include";
+      };
+    };
 }
