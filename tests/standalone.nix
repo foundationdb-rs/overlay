@@ -1,6 +1,6 @@
 { pkgs, ... }:
 
-pkgs.nixosTest {
+pkgs.testers.nixosTest {
   name = "simple-fdbserver-test";
   nodes.machine = { ... }:
     {

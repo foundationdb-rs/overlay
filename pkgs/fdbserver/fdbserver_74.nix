@@ -2,14 +2,14 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "fdbserver";
-  version = "7.4.5";
+  version = "7.4.6";
 
   src = fetchurl {
     url = "https://github.com/apple/foundationdb/releases/download/${finalAttrs.version}/fdbserver.x86_64";
-    sha256 = "cccc7f5cfc13e3912bc55c10831091cacb7ea726c2abc2b883e6fe31668afa84";
+    sha256 = "2e9bd4ce461821c5d978e1119d4065e7f2db8da77655273a2ddd31177543aa18";
   };
 
-  nativeBuildInputs = [ autoPatchelfHook makeWrapper xz zlib ]; 
+  nativeBuildInputs = [ autoPatchelfHook makeWrapper xz zlib ];
 
   # fdbserver is a binary, not an archive
   unpackPhase = ":";
